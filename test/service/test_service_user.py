@@ -176,3 +176,15 @@ class TestServiceUser:
 
         #AVALIAÇÃO
         assert expected == result
+
+    def test_update_usuario_com_sucesso(self):
+        # SETUP
+        service = ServiceUser()
+        user = User(name="Eduardo CPF inválido",
+                    profession="TechLead QA",
+                    cpf="ABC")
+        service.add_usuario(user)
+
+        service.update_user(user,"OLA", "ABC", "DR")
+
+        assert service.store.bd[0].name == "OLA"
